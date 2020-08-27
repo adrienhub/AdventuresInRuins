@@ -46,8 +46,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private boolean showMessageVictory = true;
 	private int framesGameOver = 0;
 	private boolean restartGame = false;
-	//public static boolean saveGame = false;
-	//public static boolean showSaveIcon = true;
+	// public static boolean saveGame = false;
+	// public static boolean showSaveIcon = true;
 
 	private BufferedImage image;
 
@@ -84,15 +84,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		addMouseListener(this);
 		this.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		initFrame();
-		/*TimerUtils.runTaskTimer(20, new Runnable() {
-			@Override
-			public void run() {
-				saveGame = true;
-				showSaveIcon = true;
-				System.out.println("Jogo Salvo");
-			}
-		});
-		*/
+		/*
+		 * TimerUtils.runTaskTimer(20, new Runnable() {
+		 * 
+		 * @Override public void run() { saveGame = true; showSaveIcon = true;
+		 * System.out.println("Jogo Salvo"); } });
+		 */
 		// Inicializando Objetos :)
 		ui = new UI();
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -104,9 +101,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		entities.add(player);
 		world = new World("/lvl1.png");
 		menu = new Menu();
-		//sign = new Sign(120, 470, 16, 16, spritesheet.getSprite(4, 144, 16, 16));
-		//entities.add(sign);
-		
+		// sign = new Sign(120, 470, 16, 16, spritesheet.getSprite(4, 144, 16, 16));
+		// entities.add(sign);
+
 		try {
 			newFont = Font.createFont(Font.TRUETYPE_FONT, stream).deriveFont(40f);
 		} catch (FontFormatException e) {
@@ -124,13 +121,11 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public void tick() {
 		if (gameState == "Normal") {
-			/*if (saveGame) {
-				//saveGame = false;
-				String[] opt1 = { "level", "life" };
-				int[] opt2 = { this.CUR_LEVEL, (int) player.life };
-				Menu.saveGame(opt1, opt2, 10);
-			}
-			*/
+			/*
+			 * if (saveGame) { //saveGame = false; String[] opt1 = { "level", "life" };
+			 * int[] opt2 = { this.CUR_LEVEL, (int) player.life }; Menu.saveGame(opt1, opt2,
+			 * 10); }
+			 */
 			restartGame = false;
 			for (int i = 0; i < entities.size(); i++) {
 				Entity e = entities.get(i);
@@ -151,14 +146,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 				String newWorld = "lvl" + CUR_LEVEL + ".png";
 				World.restartGame(newWorld);
 			}
-			
+
 		} else if (gameState == "Game_Over") {
 			this.framesGameOver++;
 			if (this.framesGameOver == 37) {
 				this.framesGameOver = 0;
 				if (showMessageGameOver) {
 					showMessageGameOver = false;
-				}else{
+				} else {
 					showMessageGameOver = true;
 				}
 			}
@@ -174,11 +169,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			String newWorld = "lvl" + CUR_LEVEL + ".png";
 			World.restartGame(newWorld);
 		}
-		
+
+		if (gameState == "Menu" || gameState == "Creditos") {
+			Sound.musicGame.loop();
+			Sound.musicGame.setVolume(-25);
+		}
+
 	}
 
-	
-	
 	public void render() {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
@@ -193,7 +191,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		/* Renderizaï¿½ï¿½o do jogo */
 		world.render(g);
-		Collections.sort(entities,Entity.nodeSorter);
+		Collections.sort(entities, Entity.nodeSorter);
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.render(g);
@@ -222,14 +220,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		} else if (gameState == "Menu") {
 			menu.render(g);
 		}
-		
-		if(gameState == "Victory") {
+
+		if (gameState == "Victory") {
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setColor(new Color(0, 0, 0, 50));
 			g2.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
 			g2.setFont(newFont);
 			g2.setColor(Color.white);
-			g2.drawString("Parabéns, você venceu :) ", 230, 300);
+			g2.drawString("Parabéns, você venceu! :) ", 230, 300);
 			g2.setFont(newFont);
 			if (showMessageVictory) {
 				g2.drawString("> Aperte o botão Esc para sair do jogo <", 10, 345);
@@ -237,21 +235,21 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		} else if (gameState == "Menu") {
 			menu.render(g);
 		}
-			
-		if(gameState == "Creditos") {
-			g.setColor(new Color(0,0,0,100));
-			g.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
+
+		if (gameState == "Creditos") {
+			g.setColor(new Color(0, 0, 0, 100));
+			g.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
 			g.setColor(Color.WHITE);
-			g.setFont(new Font("arial", Font.ITALIC , 40));
+			g.setFont(new Font("arial", Font.ITALIC, 40));
 			g.drawString("Créditos:", 430, 50);
-			g.setFont(new Font("arial", Font.ITALIC , 25));
+			g.setFont(new Font("arial", Font.ITALIC, 25));
 			g.drawString("Programação: @lerthal_gdev.", 350, 120);
 			g.drawString("Sprites: @snuffles61.", 400, 160);
-			g.drawString("Menu: @_gui.marc." , 400, 200);
-			g.setFont(new Font("arial", Font.ITALIC , 15));
+			g.drawString("Menu: @_gui.marc.", 400, 200);
+			g.setFont(new Font("arial", Font.ITALIC, 15));
 			g.drawString("Aperte ESC para retornar", 8, 630);
-		}	
-		
+		}
+
 		bs.show();
 
 	}
@@ -315,7 +313,6 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		if (e.getKeyCode() == KeyEvent.VK_M && enemies.size() == 0) {
 			restartGame = true;
 			this.gameState = "Menu";
-
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
@@ -347,15 +344,15 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		if (e.getKeyCode() == KeyEvent.VK_X) {
 			restartGame = true;
 		}
-		
+
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			if(gameState == "Normal"){
+			if (gameState == "Normal") {
 				menu.pause = true;
 			}
-			if(gameState == "Victory")
-			System.exit(1);
-			
-			if(gameState == "Creditos" && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			if (gameState == "Victory")
+				System.exit(1);
+
+			if (gameState == "Creditos" && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 				gameState = "Menu";
 			}
 		}

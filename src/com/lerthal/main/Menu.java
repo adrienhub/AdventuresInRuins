@@ -28,34 +28,26 @@ public class Menu {
 	public BufferedImage start0, startPlay, startCreditos, startExit;
 	// public static boolean saveExists = false;
 	// public static boolean saveGame = false;
-	
-	public Menu() {
 
-		try {
-			start0 = ImageIO.read(World.class.getResource("/start0.png"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+	public Menu() {
 
 		try {
 			startPlay = ImageIO.read(World.class.getResource("/startPlay.png"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		try {
 			startCreditos = ImageIO.read(World.class.getResource("/startCreditos.png"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
-		
+
 		try {
 			startExit = ImageIO.read(World.class.getResource("/startExit.png"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
 
 	}
 
@@ -139,11 +131,11 @@ public class Menu {
 	public void render(Graphics g) {
 
 		if (options[currentOption] == "New Game") {
-			g.drawImage(startPlay, 0, 0, Game.WIDTH*Game.SCALE , Game.HEIGHT*Game.SCALE, null);
+			g.drawImage(startPlay, 0, 0, Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE, null);
 		} else if (options[currentOption] == "Instructions") {
-			g.drawImage(startCreditos, 0, 0, Game.WIDTH*Game.SCALE , Game.HEIGHT*Game.SCALE, null);
+			g.drawImage(startCreditos, 0, 0, Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE, null);
 		} else if (options[currentOption] == "Exit") {
-			g.drawImage(startExit, 0, 0, Game.WIDTH*Game.SCALE , Game.HEIGHT*Game.SCALE, null);
+			g.drawImage(startExit, 0, 0, Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE, null);
 		}
 
 	}

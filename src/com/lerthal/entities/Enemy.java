@@ -55,7 +55,7 @@ public class Enemy extends Entity {
 		} else {
 			// Estamos colidindo
 			if (Game.rand.nextInt(100) < 10) {
-				//Sound.hitEffect.play();
+				Sound.hit.play();
 				Game.player.life-=3;
 				Game.player.speed -= 0.06;
 				Game.player.isDamaged = true;

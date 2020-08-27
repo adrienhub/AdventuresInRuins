@@ -159,7 +159,7 @@ public class Player extends Entity {
 		if (mouseShoot) {
 			mouseShoot = false;
 			if (Gun && ammo > 0) {
-				//Sound.shootEffect.play();
+				Sound.shoot.play();
 				ammo--;
 
 				int px = 0;
@@ -207,7 +207,7 @@ public class Player extends Entity {
 		Camera.y = Camera.clamp(this.getY() - (Game.HEIGHT / 2), 0, World.HEIGHT * 16 - Game.HEIGHT);
 
 		if (wisdomPoints >= levelLimit) {
-			//Sound.powerUpEffect.play();
+			Sound.powerUp.play();
 			level++;
 			levelLimit += 5;
 		}
