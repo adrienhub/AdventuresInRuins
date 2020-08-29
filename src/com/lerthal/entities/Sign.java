@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.Collections;
 
 import com.lerthal.main.Game;
 
@@ -18,7 +17,7 @@ public class Sign extends Entity {
 	public int time = 0;
 	public int maxTime = 3;
 	private int separador = 15;
-	private int inicio = 25 * Game.SCALE;
+//	private int inicio = 25 * Game.SCALE;
 
 	public Sign(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);

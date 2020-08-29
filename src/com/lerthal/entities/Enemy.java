@@ -1,6 +1,5 @@
 package com.lerthal.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -93,7 +92,7 @@ public class Enemy extends Entity {
 
 		if (life <= 0) {
 			destroyEnemy();
-			Game.player.wisdomPoints+=1;
+			Player.wisdomPoints+=1;
 			
 		}
 		
@@ -123,7 +122,7 @@ public class Enemy extends Entity {
 				if (Entity.isColliding(this, e)) {
 					isDamaged = true;
 					life--;
-					if(Game.player.wisdomPoints >= 5){
+					if(Player.wisdomPoints >= 5){
 						life-=2;
 					}
 					Game.bullets.remove(i);

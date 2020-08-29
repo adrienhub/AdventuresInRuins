@@ -6,9 +6,7 @@ import java.awt.image.BufferedImage;
 
 import com.lerthal.main.Game;
 import com.lerthal.world.Camera;
-import com.lerthal.world.Tile;
 import com.lerthal.world.World;
-import com.lerthal.world.wallTile;
 
 public class Shoot extends Entity {
 
@@ -45,11 +43,11 @@ public class Shoot extends Entity {
 		g.setColor(new Color(47, 86, 226));
 		g.fillOval(this.getX() - Camera.x, this.getY() - Camera.y, width, height);
 
-		if (Game.player.wisdomPoints >= 5) {
+		if (Player.wisdomPoints >= 5) {
 			g.setColor(new Color(255, 216, 0));
 			g.fillOval(this.getX() - Camera.x, this.getY() - Camera.y, width, height);
 		}
-		if (Game.player.wisdomPoints >= 10) {
+		if (Player.wisdomPoints >= 10) {
 			g.setColor(new Color(0, 255, 136));
 			g.fillOval(this.getX() - Camera.x, this.getY() - Camera.y, width, height);
 			g.fillOval(this.getX() + 6 - Camera.x, this.getY() + 6 - Camera.y, width, height);

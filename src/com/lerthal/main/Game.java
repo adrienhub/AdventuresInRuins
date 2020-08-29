@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.TimerTask;
 
 import javax.swing.JFrame;
 
@@ -33,7 +32,11 @@ import com.lerthal.graficos.UI;
 import com.lerthal.world.World;
 
 public class Game extends Canvas implements Runnable, KeyListener, MouseListener {
-
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static JFrame frame;
 	private Thread thread;
 	private boolean isRunning = true;
@@ -96,10 +99,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		entities = new ArrayList<Entity>();
 		enemies = new ArrayList<Enemy>();
 		bullets = new ArrayList<Shoot>();
-		spritesheet = new Spritesheet("/spritesheet.png");
+		spritesheet = new Spritesheet("spritesheet.png");
 		player = new Player(16, 16, 16, 16, spritesheet.getSprite(32, 0, 16, 16));
 		entities.add(player);
-		world = new World("/lvl1.png");
+		world = new World("lvl1.png");
 		menu = new Menu();
 		// sign = new Sign(120, 470, 16, 16, spritesheet.getSprite(4, 144, 16, 16));
 		// entities.add(sign);
@@ -164,7 +167,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		if (restartGame) {
 			restartGame = false;
-			this.gameState = "Normal";
+			gameState = "Normal";
 			CUR_LEVEL = 1;
 			String newWorld = "lvl" + CUR_LEVEL + ".png";
 			World.restartGame(newWorld);
@@ -322,7 +325,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		if (e.getKeyCode() == KeyEvent.VK_M && enemies.size() == 0) {
 			restartGame = true;
-			this.gameState = "Menu";
+			gameState = "Menu";
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {

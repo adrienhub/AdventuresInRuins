@@ -5,12 +5,11 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import com.lerthal.entities.Entity;
-import com.lerthal.entities.Player;
 import com.lerthal.main.Game;
 
 public class UI {
 
-	private int saveIconFrames = 0 , maxSaveFrames = 150;
+//	private int saveIconFrames = 0 , maxSaveFrames = 150;
 	
 	
 	/*

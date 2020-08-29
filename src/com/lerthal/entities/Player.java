@@ -1,15 +1,10 @@
 package com.lerthal.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.TimerTask;
 
-import com.lerthal.graficos.Spritesheet;
 import com.lerthal.main.Game;
 import com.lerthal.main.Sound;
-import com.lerthal.main.TimerUtils;
 import com.lerthal.world.Camera;
 import com.lerthal.world.World;
 
@@ -25,7 +20,7 @@ public class Player extends Entity {
 	private boolean moved = false;
 	public static final int WIDTH = 16;
 	public static final int HEIGHT = 16;
-	private int levelLimit = 5;
+	private int levelLimit = 5;	
 	private int level = 1;
 
 	private BufferedImage[] rightPlayer;
@@ -208,7 +203,7 @@ public class Player extends Entity {
 
 		if (wisdomPoints >= levelLimit) {
 			Sound.powerUp.play();
-			level++;
+			level = level + 1;			
 			levelLimit += 5;
 		}
 

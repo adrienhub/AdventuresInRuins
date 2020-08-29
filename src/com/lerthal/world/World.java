@@ -18,6 +18,7 @@ import com.lerthal.entities.Sign;
 import com.lerthal.entities.Weapon;
 import com.lerthal.graficos.Spritesheet;
 import com.lerthal.main.Game;
+import com.lerthal.tools.Tool;
 
 public class World {
 
@@ -28,7 +29,11 @@ public class World {
 
 	public World(String path) {
 		try {
-			map = ImageIO.read(getClass().getResource(path));
+			//ao inves de:
+			//getClass().getResource(path)
+			//talvez seria melhor  getClass().getClassLoader().getResourceAsStream(path)
+			
+			map = ImageIO.read(Tool.loadFilefromName(path));
 
 			int[] pixels = new int[map.getWidth() * map.getHeight()];
 			WIDTH = map.getWidth();
@@ -174,7 +179,7 @@ public class World {
 		Game.entities.add(Game.player);
 		Game.world = new World("/" + lvl);
 		Game.player.ammo = 0;
-		Game.player.wisdomPoints = 0;
+		Player.wisdomPoints = 0; //static
 		Entity.life_bar3 = Game.spritesheet.getSprite(32, 112, 16, 16);
 		Entity.life_bar4 = Game.spritesheet.getSprite(48, 112, 16, 16);
 		Entity.speedIcon = Game.spritesheet.getSprite(64, 80, 16, 16);

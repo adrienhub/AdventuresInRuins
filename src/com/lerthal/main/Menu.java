@@ -1,22 +1,12 @@
 package com.lerthal.main;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-import com.lerthal.world.World;
+import com.lerthal.tools.Tool;
 
 public class Menu {
 
@@ -30,23 +20,14 @@ public class Menu {
 	// public static boolean saveGame = false;
 
 	public Menu() {
-
+		
 		try {
-			startPlay = ImageIO.read(World.class.getResource("/startPlay.png"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-
-		try {
-			startCreditos = ImageIO.read(World.class.getResource("/startCreditos.png"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-
-		try {
-			startExit = ImageIO.read(World.class.getResource("/startExit.png"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
+			startPlay = ImageIO.read(Tool.loadFilefromName("startPlay.png"));
+			startCreditos = ImageIO.read(Tool.loadFilefromName("startCreditos.png"));
+			startExit = ImageIO.read(Tool.loadFilefromName("startExit.png"));
+		} catch (IOException e) {
+			System.out.println("Erro ao iniciar o jogo \n" + e.getMessage());
+			e.printStackTrace();
 		}
 
 	}
