@@ -250,6 +250,16 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			g.drawString("Aperte ESC para retornar", 8, 630);
 		}
 
+		if (gameState == "Pause") {
+			g.setColor(new Color(0, 0, 0, 100));
+			g.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("arial", Font.ITALIC, 50));
+			g.drawString(" > Jogo Pausado <", 310, 320);
+			g.setFont(new Font("arial", Font.ITALIC, 25));
+			g.drawString("Aperte ESC para retornar", 375, 390);
+		}
+
 		bs.show();
 
 	}
@@ -347,8 +357,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			if (gameState == "Normal") {
-				menu.pause = true;
+				gameState = "Pause";
 			}
+		
+			
+			if (gameState == "Pause" && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+				gameState = "Menu";
+			}
+			
 			if (gameState == "Victory")
 				System.exit(1);
 
