@@ -11,6 +11,8 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import com.lerthal.tools.Tool;
+
 public class Sound {
 
 	public static class Clips {
@@ -73,11 +75,11 @@ public class Sound {
 		
 	}
 	
-	public static Clips hit = load("/hit.wav" , 1);
-	public static Clips powerUp = load("/powerUp.wav" , 1);
-	public static Clips shoot = load("/shoot.wav" , 1);
-	public static Clips musicBackground = load("/musicBackground.wav" , 1);
-	public static Clips musicGame = load("/musicGame.wav" , 1);
+	public static Clips hit = load(Tool.loadFilefromName("hit.wav").getAbsolutePath() , 1);
+	public static Clips powerUp = load(Tool.loadFilefromName("powerUp.wav").getAbsolutePath() , 1);
+	public static Clips shoot = load(Tool.loadFilefromName("shoot.wav").getAbsolutePath() , 1);
+	//public static Clips musicBackground = load(Tool.loadFilefromName("musicBackground.wav").getAbsolutePath() , 1);
+	//public static Clips musicGame = load(Tool.loadFilefromName("musicGame.wav").getAbsolutePath() , 1);
 	
 	
 	private static Clips load(String name, int count) {
@@ -93,7 +95,7 @@ public class Sound {
 			dis.close();
 			byte[] data = baos.toByteArray();
 			return new Clips(data,count);
-		}catch(Exception e) {
+		}catch(Exception e) {			
 			try {
 				return new Clips(null,0);
 			}catch(Exception ee){

@@ -172,10 +172,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			String newWorld = "lvl" + CUR_LEVEL + ".png";
 			World.restartGame(newWorld);
 		}
-
+//TODO adicionar musica no git/ folder res
 		if (gameState == "Menu" || gameState == "Creditos") {
-			Sound.musicGame.loop();
-			Sound.musicGame.setVolume(-25);
+//			Sound.musicGame.loop();
+//			Sound.musicGame.setVolume(-25);
 		}
 
 	}
